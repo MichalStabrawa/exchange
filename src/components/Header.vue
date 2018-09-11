@@ -215,5 +215,8 @@ tbody tr td{
     flex-direction: column;
     padding-top: 50px;
 }
+.wrapper-form-gold .wrapper-item{
+    margin:0 auto;
+}
 </style>
 

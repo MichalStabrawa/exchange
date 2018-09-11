@@ -1,6 +1,7 @@
 <template>
     <footer>
         <a href="https://github.com/MichalStabrawa"><i class="fab fa-2x fa-github"></i></a>
+        <a href=""><i class="fab fa-2x fa-linkedin-in"></i></a>
     </footer>
 </template>
 
@@ -21,5 +22,6 @@ footer{
 }
 footer i{
     color:#fff;
+    margin:10px;
 }
 </style>

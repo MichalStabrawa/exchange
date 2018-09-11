@@ -1,6 +1,6 @@
 <template>
     <nav>
-      
+    
      </nav>
 
     </template>
@@ -18,5 +18,8 @@ export default {
 nav{
     background:#000;
     height: 80px;
+}
+nav i{
+    color:#fff;
 }
 </style>

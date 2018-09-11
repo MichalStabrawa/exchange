@@ -73,7 +73,8 @@ export default {
           info3: null,
           selected: '',
           val1: '',
-          goldDate: null
+          goldDate: null,
+         
 
          
         }
@@ -128,9 +129,10 @@ export default {
 <style scoped>
 header{
     width: 100%;
-    height: 80vh;
+    height: auto;
     background:transparent;
     padding-top:50px;
+    padding-bottom: 50px;
 }
 
 header h1{

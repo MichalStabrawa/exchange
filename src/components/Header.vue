@@ -70,12 +70,12 @@
             <h3>CENA</h3>
             <hr>{{goldDate.cena}}
           </div>
-
+<h3>OSTATNIE 4 notowania</h3>
  <div class="wrraper-gold" v-if="this.goldLast!=null">
-    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast0+'%'}" >{{goldLast[0].cena}}</div>
-    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast1+'%'}" >{{goldLast[1].cena}}</div>
-    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast2+'%'}" >{{goldLast[2].cena}}</div>
-    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast3+'%'}" >{{goldLast[3].cena}}</div>
+    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast0+'px'}" ><span>{{goldLast[0].cena}}</span><span>{{goldLast[0].data}}</span></div>
+    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast1+'px'}" ><span>{{goldLast[1].cena}}</span><span>{{goldLast[1].data}}</span></div>
+    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast2+'px'}" ><span>{{goldLast[2].cena}}</span><span>{{goldLast[2].data}}</span></div>
+    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast3+'px'}" ><span>{{goldLast[3].cena}}</span><span>{{goldLast[3].data}}</span></div>
   </div>
          
         </div>
@@ -157,10 +157,10 @@ Gold
           .then(resp => {
             this.goldLast = resp;
             console.log(typeof goldLast);
-            this.goldLast0=(resp[0].cena)/4;
-            this.goldLast1=(resp[1].cena)/4;
-            this.goldLast2=(resp[2].cena)/4;
-            this.goldLast3=(resp[3].cena)/4;
+            this.goldLast0=(resp[0].cena);
+            this.goldLast1=(resp[1].cena);
+            this.goldLast2=(resp[2].cena);
+            this.goldLast3=(resp[3].cena);
           
           })
       },
@@ -292,18 +292,31 @@ Gold
     background: rgb(182, 190, 132);
   }
   .wrraper-gold{
-      margin-top: 50px;
+     
     width: 100%;
     display: flex;
     justify-content: space-around;
-    height: 300px;
+    
     align-items: flex-end;
    border-bottom: 1px solid grey;
+   background: gainsboro;
   
 }
 .wrapper-gold-item{
+    position: relative;
     width: 10px;
     background: red;
 
+}
+.wrapper-gold-item span{
+    position: absolute;
+    z-index:10;
+    bottom:0;
+    margin:0;
+    right:15px;
+    font-size:10px;
+}
+.wrapper-gold-item span:nth-child(1){
+    top:0;
 }
 </style>

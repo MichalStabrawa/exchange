@@ -44,7 +44,7 @@
 
              
 
-                <div class="wrapper-form-gold">
+                <div class="wrapper-form-gold" v-if="this.goldDate!=null">
                     <h3>KURS ZŁOTA {{goldDate.data}}</h3>
                     <div class="wrapper-item"><h3>CENA</h3><hr>{{goldDate.cena}}</div>
 

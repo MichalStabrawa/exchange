@@ -47,7 +47,11 @@
                 <div class="wrapper-form-gold">
                     <h3>KURS ZŁOTA {{goldDate.data}}</h3>
                     <div class="wrapper-item"><h3>CENA</h3><hr>{{goldDate.cena}}</div>
+
+                    <div class="item-gold" v-bind:style="{ height: goldDate.cena+'px'}">141.90</div><label for="">0.2.09.2018</label>
                 </div>
+
+
              </div>
 <div></div>
         </div>
@@ -74,11 +78,14 @@ export default {
           selected: '',
           val1: '',
           goldDate: null,
+          heightDiv: 200
          
 
          
         }
     },
+
+    
 
     methods:{
         changeVal: function(){
@@ -101,6 +108,7 @@ export default {
     .then(resp => resp.json())
     .then(resp => {
         this.goldDate=resp[0];
+        console.log(typeof goldDate);
    console.log(resp[0]);
     })
         }
@@ -217,6 +225,11 @@ tbody tr td{
 }
 .wrapper-form-gold .wrapper-item{
     margin:0 auto;
+}
+.item-gold{
+    width: 10px;
+   
+    background:rgb(182, 190, 132);
 }
 </style>
 

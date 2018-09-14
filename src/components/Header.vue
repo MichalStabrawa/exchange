@@ -51,7 +51,7 @@
 
       <div class="wraper-form">
         <h2>PRZELICZ NA ZŁ</h2>
-        <input type="number" v-model="val1" placeholder="wpisz kwotę">
+        <input type="number" v-model="val1" placeholder="wpisz kwotę" min="1" >
         <select name="" id="" v-model="selected">
           <option v-bind:value="item.mid" v-for="(item,itemKey) in info3" :key="itemKey">{{item.code}}</option>
         </select>
@@ -59,7 +59,7 @@
 
         <span>kurs: <strong>{{selected}}</strong></span>
         <span>ilość <strong>{{val1}}</strong></span>
-        <button v-on:click="changeVal">PRZELICZ</button><br>
+        <button  v-on:click="changeVal">PRZELICZ</button><br>
         <span id="span11"></span>
 
 
@@ -70,14 +70,22 @@
             <h3>CENA</h3>
             <hr>{{goldDate.cena}}
           </div>
-<h3>OSTATNIE 4 notowania</h3>
- <div class="wrraper-gold" v-if="this.goldLast!=null">
-    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast0+'px'}" ><span>{{goldLast[0].cena}}</span><span>{{goldLast[0].data}}</span></div>
-    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast1+'px'}" ><span>{{goldLast[1].cena}}</span><span>{{goldLast[1].data}}</span></div>
-    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast2+'px'}" ><span>{{goldLast[2].cena}}</span><span>{{goldLast[2].data}}</span></div>
-    <div class="wrapper-gold-item" v-bind:style="{ height: goldLast3+'px'}" ><span>{{goldLast[3].cena}}</span><span>{{goldLast[3].data}}</span></div>
+          <h3>OSTATNIE 4 notowania</h3>
+          <div class="wrraper-gold" v-if="this.goldLast!=null">
+            <div class="wrapper-gold-item" v-bind:style="{ height: goldLast0+'px'}"><span>{{goldLast[0].cena}}</span><span>{{goldLast[0].data}}</span></div>
+            <div class="wrapper-gold-item" v-bind:style="{ height: goldLast1+'px'}"><span>{{goldLast[1].cena}}</span><span>{{goldLast[1].data}}</span></div>
+            <div class="wrapper-gold-item" v-bind:style="{ height: goldLast2+'px'}"><span>{{goldLast[2].cena}}</span><span>{{goldLast[2].data}}</span></div>
+            <div class="wrapper-gold-item" v-bind:style="{ height: goldLast3+'px'}"><span>{{goldLast[3].cena}}</span><span>{{goldLast[3].data}}</span></div>
+          </div>
+
+       
+
+  
+  <div class="block">
+    <span class="demonstration">Default value</span>
+    <el-slider v-model="value2" value=""></el-slider>
   </div>
-         
+  <span>{{value2}}</span>
         </div>
 
 
@@ -97,11 +105,13 @@
 
 
 
+
   export default {
     name: 'Header',
-    components:{
-Gold
-    } ,
+    components: {
+      Gold
+
+    },
 
     data() {
       return {
@@ -110,6 +120,7 @@ Gold
         info3: null,
         selected: '',
         val1: '',
+        value2:'',
         goldDate: null,
         heightDiv: 200,
         goldLast: null,
@@ -117,7 +128,7 @@ Gold
         goldLast1: null,
         goldLast2: null,
         goldLast3: null
-       
+
 
 
 
@@ -151,17 +162,17 @@ Gold
             console.log(resp[0]);
           })
       },
-    async metoda3() {
+      async metoda3() {
         fetch("http://api.nbp.pl/api/cenyzlota/last/7")
           .then(resp => resp.json())
           .then(resp => {
             this.goldLast = resp;
             console.log(typeof goldLast);
-            this.goldLast0=(resp[0].cena);
-            this.goldLast1=(resp[1].cena);
-            this.goldLast2=(resp[2].cena);
-            this.goldLast3=(resp[3].cena);
-          
+            this.goldLast0 = (resp[0].cena) / 2;
+            this.goldLast1 = (resp[1].cena) / 2;
+            this.goldLast2 = (resp[2].cena) / 2;
+            this.goldLast3 = (resp[3].cena) / 2;
+
           })
       },
 
@@ -213,6 +224,10 @@ Gold
     background: rgb(221, 216, 216);
     border-radius: 5px;
     margin: 10px;
+  }
+
+  .wrapper-item:nth-child(odd) {
+    background: rgb(192, 200, 247);
   }
 
   .wrapper-table {
@@ -291,32 +306,36 @@ Gold
 
     background: rgb(182, 190, 132);
   }
-  .wrraper-gold{
-     
+
+  .wrraper-gold {
+
     width: 100%;
     display: flex;
     justify-content: space-around;
-    
+
     align-items: flex-end;
-   border-bottom: 1px solid grey;
-   background: gainsboro;
-  
-}
-.wrapper-gold-item{
+    border-bottom: 1px solid grey;
+    background: gainsboro;
+
+  }
+
+  .wrapper-gold-item {
     position: relative;
     width: 10px;
     background: red;
 
-}
-.wrapper-gold-item span{
+  }
+
+  .wrapper-gold-item span {
     position: absolute;
-    z-index:10;
-    bottom:0;
-    margin:0;
-    right:15px;
-    font-size:10px;
-}
-.wrapper-gold-item span:nth-child(1){
-    top:0;
-}
+    z-index: 10;
+    bottom: 0;
+    margin: 0;
+    right: 15px;
+    font-size: 10px;
+  }
+
+  .wrapper-gold-item span:nth-child(1) {
+    top: 0;
+  }
 </style>

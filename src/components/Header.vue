@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>Kursy Walut {{info}}</h1>
-    <a href="" v-scroll-to="'#element'">scroll</a>
+    <a href="" v-scroll-to="'#element'">ZŁOTO</a>
     <div class="wrapper" v-if="this.info3!=null">
       <div class="wrapper-item">
         <h3 id="eur">{{info3[7].code}}</h3>
@@ -82,12 +82,12 @@
 
 
           <div class="block" id="element">
-            <span class="demonstration">Default value</span>
+            <span class="demonstration">Przelicz wartość złota(g)</span>
             <el-slider v-model="value2" value=""></el-slider>
           </div>
           <span>{{value2}}g</span>
 
-          <span>{{value2*goldDate.cena}}zł</span>
+          <span class="goldPriceNow">{{value2*((goldDate.cena)/100)}}zł</span>
           <span></span>
         </div>
 
@@ -344,5 +344,22 @@
 
   .wrapper-gold-item span:nth-child(1) {
     top: 0;
+  }
+
+  #element {
+    margin-top: 40px;
+  }
+
+  .el-slider__bar {
+    background-color: gold !important;
+  }
+
+  .el-slider__button {
+    border: 2px solid gold;
+  }
+
+  .goldPriceNow {
+    font-size: 30px;
+    font-weight: bold;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>Kursy Walut {{info}}</h1>
-
+    <a href="" v-scroll-to="'#element'">scroll</a>
     <div class="wrapper" v-if="this.info3!=null">
       <div class="wrapper-item">
         <h3 id="eur">{{info3[7].code}}</h3>
@@ -51,7 +51,7 @@
 
       <div class="wraper-form">
         <h2>PRZELICZ NA ZŁ</h2>
-        <input type="number" v-model="val1" placeholder="wpisz kwotę" min="1" >
+        <input type="number" v-model="val1" placeholder="wpisz kwotę" min="1">
         <select name="" id="" v-model="selected">
           <option v-bind:value="item.mid" v-for="(item,itemKey) in info3" :key="itemKey">{{item.code}}</option>
         </select>
@@ -59,7 +59,7 @@
 
         <span>kurs: <strong>{{selected}}</strong></span>
         <span>ilość <strong>{{val1}}</strong></span>
-        <button  v-on:click="changeVal">PRZELICZ</button><br>
+        <button v-on:click="changeVal">PRZELICZ</button><br>
         <span id="span11"></span>
 
 
@@ -78,14 +78,17 @@
             <div class="wrapper-gold-item" v-bind:style="{ height: goldLast3+'px'}"><span>{{goldLast[3].cena}}</span><span>{{goldLast[3].data}}</span></div>
           </div>
 
-       
 
-  
-  <div class="block">
-    <span class="demonstration">Default value</span>
-    <el-slider v-model="value2" value=""></el-slider>
-  </div>
-  <span>{{value2}}</span>
+
+
+          <div class="block" id="element">
+            <span class="demonstration">Default value</span>
+            <el-slider v-model="value2" value=""></el-slider>
+          </div>
+          <span>{{value2}}g</span>
+
+          <span>{{value2*goldDate.cena}}zł</span>
+          <span></span>
         </div>
 
 
@@ -104,6 +107,9 @@
 
 
 
+  const Vue = require('vue')
+  const VueScrollTo = require('vue-scrollto')
+  Vue.use(VueScrollTo)
 
 
   export default {
@@ -120,7 +126,7 @@
         info3: null,
         selected: '',
         val1: '',
-        value2:'',
+        value2: '',
         goldDate: null,
         heightDiv: 200,
         goldLast: null,
@@ -141,6 +147,7 @@
       changeVal: function () {
         document.getElementById('span11').innerText = (parseInt(this.val1)) * (parseFloat(this.selected)) + "" + 'zl';
       },
+
 
       async metoda() {
         fetch("http://api.nbp.pl/api/exchangerates/tables/a/")

@@ -87,7 +87,7 @@
           </div>
           <span>{{value2}}g</span>
 
-          <span class="goldPriceNow">{{value2*((goldDate.cena)/100)}}zł</span>
+          <span class="goldPriceNow">{{value2*goldDate.cena}}zł</span>
           <span></span>
         </div>
 
